@@ -17,10 +17,10 @@ variables:
 steps:
 
 - task: DownloadSecureFile@1
-  name: GoogleServicesJson 
+  name: GoogleServicesJson
   inputs:
     secureFile: 'google-services.json'
-    
+
 - script: |
     echo Copying google-services.json to project folder
     cp $(GoogleServicesJson.secureFilePath) $(Build.SourcesDirectory)/Rocks.Wasabee.Mobile.Android
@@ -46,11 +46,12 @@ steps:
 - task: AndroidSigning@3
   inputs:
     apkFiles: '**/bin/*.apk'
-    apksignerKeystoreFile: 'WasabeeAndroid.Keystore'
-    apksignerKeystorePassword: '$(KeystorePassword)'
-    apksignerKeystoreAlias: '$(KeystoreAlias)'
-    apksignerKeyPassword: '$(KeystorePassword)'
-    apksignerArguments: '--out $(Build.ArtifactStagingDirectory)/signed.apk'
+    apksign: false
+    #apksignerKeystoreFile: 'WasabeeAndroid.Keystore'
+    #apksignerKeystorePassword: '$(KeystorePassword)'
+    #apksignerKeystoreAlias: '$(KeystoreAlias)'
+    #apksignerKeyPassword: '$(KeystorePassword)'
+    #apksignerArguments: '--out $(Build.ArtifactStagingDirectory)/signed.apk'
 
 - task: PublishBuildArtifacts@1
   inputs:
