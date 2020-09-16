@@ -8,7 +8,8 @@ trigger:
 - master
 
 pool:
-  vmImage: 'macos-latest'
+  vmImage: 'ubuntu-latest'
+  #vmImage: 'macos-latest'
 
 variables:
   buildConfiguration: 'Release'
